@@ -16,7 +16,7 @@ services:
     networks:
       - general
     ports:
-      - 8000
+      - 8000:8000
     links:
       - pgsql
     depends_on:
