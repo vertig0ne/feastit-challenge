@@ -1,0 +1,30 @@
+---
+version: '2'
+networks:
+  general:
+    driver: bridge
+services:
+  challenge:
+    build: .
+    container_name: challenge
+    image: vertig0ne/feastit-challenge:latest
+    environment:
+      - "PGUSER=username"
+      - "PGPASSWORD=DbP@ssw0rd!"
+      - "PGHOST=pgsql"
+      - "PGPORT=5432"
+    networks:
+      - general
+    ports:
+      - 8000
+    links:
+      - pgsql
+    depends_on:
+      - pgsql
+  pgsql:
+    container_name: pgsql
+    image: mdillon/postgis
+    environment:
+      - "POSTGRES_PASSWORD=A1b2c3d4!"
+    networks:
+      - general
