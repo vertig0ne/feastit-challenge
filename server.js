@@ -3,6 +3,7 @@ const app = express();
 const compression = require('compression');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const routes = require('./routes');
 const port = process.env.PORT || 8000;
 
 app.use(cors());
@@ -16,6 +17,10 @@ app.enable('trust proxy');
 app.get('/', (req, res) => {
     const message = 'Hello World!';
     res.json({message});
+});
+
+Object.values(routes).forEach(route => {
+    app.use(`/api/v1/${route.name}`, route.router);
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
