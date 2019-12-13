@@ -23,14 +23,17 @@ Object.values(routes).forEach(route => {
     app.use(`/api/v1/${route.name}`, route.router);
 });
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     return res.json({ name: err.name, message: err.message });
 });
 
+// eslint-disable-next-line no-unused-vars
 app.use((req, res, next) => {
     return res.json({ name: 'NotFound', message: 'Page Not Found' });
 });
 
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 module.exports = app;

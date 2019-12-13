@@ -7,4 +7,4 @@ router.get('/', controller.get);
 module.exports = {
     name: 'suggestions',
     router,
-}
+};
