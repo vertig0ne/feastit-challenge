@@ -23,6 +23,14 @@ Object.values(routes).forEach(route => {
     app.use(`/api/v1/${route.name}`, route.router);
 });
 
+app.use((err, req, res, next) => {
+    return res.json({ name: err.name, message: err.message });
+});
+
+app.use((req, res, next) => {
+    return res.json({ name: 'NotFound', message: 'Page Not Found' });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 module.exports = app;
